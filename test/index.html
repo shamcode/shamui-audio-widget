@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+  <title>Audio widget</title>
+  <link rel="stylesheet" href="assets/font-awesome.min.css">
+  <style type="text/css">
+    * {
+      box-sizing: border-box;
+    }
+    #audio-player .play-pause {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all .4s ease-in-out;
+      box-shadow: 0 0 7px rgba(0,0,0,.2);
+      text-decoration: none;
+      text-align: center;
+      font-size: 25px;
+      z-index: 1;
+      background-color: rgba(1,151,171,1);
+      color: rgba(0,63,71,1);
+      border: 1px outset rgba(0, 63, 71, .2);
+    }
+    #audio-player .play-pause:hover {
+      box-shadow: 0 0 10px rgba(0,0,0,.3);
+      transform: rotate(-360deg);
+      color: rgb(0, 98, 106);
+    }
+    #audio-player .play-pause .fa {
+      vertical-align: middle;
+      padding-top: 4px;
+      padding-left: 4px;
+    }
+    #audio-player .play-pause.playing .fa {
+      padding-left: 0;
+    }
+
+    /*
+      ::::::::::::::::::::::::::::::::::
+      Slider
+      :::::::::::::::::::::::::::::::::
+    */
+    input[type=range].slider {
+      -webkit-appearance: none;
+      width: 100%;
+      margin: 7px 0;
+    }
+    input[type=range].slider:focus {
+      outline: none;
+    }
+    input[type=range].slider::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 6px;
+      cursor: pointer;
+      box-shadow: 1.4px 1.4px 1.7px rgba(0, 0, 0, 0.52), 0px 0px 1.4px rgba(13, 13, 13, 0.52);
+      background: #0197ab;
+      border-radius: 3px;
+      border: 0px solid rgba(1, 1, 1, 0);
+    }
+    input[type=range].slider::-webkit-slider-thumb {
+      box-shadow: 0px 0px 5.9px rgba(0, 0, 0, 0.78), 0px 0px 0px rgba(13, 13, 13, 0.78);
+      border: 1px solid rgba(0, 63, 71, 0.2);
+      height: 20px;
+      width: 20px;
+      border-radius: 10px;
+      background: #003f47;
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -7px;
+    }
+    input[type=range].slider:focus::-webkit-slider-runnable-track {
+      background: #01a9bf;
+    }
+    input[type=range].slider::-moz-range-track {
+      width: 100%;
+      height: 6px;
+      cursor: pointer;
+      box-shadow: 1.4px 1.4px 1.7px rgba(0, 0, 0, 0.52), 0px 0px 1.4px rgba(13, 13, 13, 0.52);
+      background: #0197ab;
+      border-radius: 3px;
+      border: 0px solid rgba(1, 1, 1, 0);
+    }
+    input[type=range].slider::-moz-range-thumb {
+      box-shadow: 0px 0px 5.9px rgba(0, 0, 0, 0.78), 0px 0px 0px rgba(13, 13, 13, 0.78);
+      border: 1px solid rgba(0, 63, 71, 0.2);
+      height: 20px;
+      width: 20px;
+      border-radius: 10px;
+      background: #003f47;
+      cursor: pointer;
+    }
+    input[type=range].slider::-ms-track {
+      width: 100%;
+      height: 6px;
+      cursor: pointer;
+      background: transparent;
+      border-color: transparent;
+      color: transparent;
+    }
+    input[type=range].slider::-ms-fill-lower {
+      background: #018597;
+      border: 0px solid rgba(1, 1, 1, 0);
+      border-radius: 6px;
+      box-shadow: 1.4px 1.4px 1.7px rgba(0, 0, 0, 0.52), 0px 0px 1.4px rgba(13, 13, 13, 0.52);
+    }
+    input[type=range].slider::-ms-fill-upper {
+      background: #0197ab;
+      border: 0px solid rgba(1, 1, 1, 0);
+      border-radius: 6px;
+      box-shadow: 1.4px 1.4px 1.7px rgba(0, 0, 0, 0.52), 0px 0px 1.4px rgba(13, 13, 13, 0.52);
+    }
+    input[type=range].slider::-ms-thumb {
+      box-shadow: 0px 0px 5.9px rgba(0, 0, 0, 0.78), 0px 0px 0px rgba(13, 13, 13, 0.78);
+      border: 1px solid rgba(0, 63, 71, 0.2);
+      width: 20px;
+      border-radius: 10px;
+      background: #003f47;
+      cursor: pointer;
+      height: 6px;
+    }
+    input[type=range].slider:focus::-ms-fill-lower {
+      background: #0197ab;
+    }
+    input[type=range].slider:focus::-ms-fill-upper {
+      background: #01a9bf;
+    }
+    /*
+    ::::::::::::::::::::::::::::::::::
+    VOLUME
+    :::::::::::::::::::::::::::::::::
+    */
+    input[type=range].volume {
+      width: 10%;
+    }
+    input[type=range].timing {
+      width: 70%;
+    }
+    .pre, .next {
+      color: rgba(0,63,71,1);
+      display: inline-block;
+      margin: 7px 0;
+      padding: 0 15px;
+      cursor: pointer;
+    }
+
+    .pre i, .next i {
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <script src="assets/bundle.js"></script>
+  <div id="audio-player"></div>
+</body>
+</html>
