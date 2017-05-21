@@ -2,7 +2,9 @@
 <html>
 <head>
   <title>Audio widget</title>
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
   <link rel="stylesheet" href="assets/font-awesome.min.css">
+  <script src="../node_modules/babel-polyfill/dist/polyfill.js"></script>
   <style type="text/css">
     * {
       box-sizing: border-box;
@@ -151,6 +153,9 @@
   </style>
 </head>
 <body>
+  <div id="mocha"></div>
+  <script src="../node_modules/mocha/mocha.js"></script>
+  <script src="../node_modules/chai/chai.js"></script>
   <script src="assets/bundle.js"></script>
   <div id="audio-player"></div>
 </body>

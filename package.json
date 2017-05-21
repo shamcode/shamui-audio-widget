@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "server": "http-server",
-    "build": "WEBPACK_ENV=build webpack"
+    "build": "WEBPACK_ENV=build webpack",
+    "dev": "WEBPACK_ENV=dev webpack --progress --colors",
+    "test": "./node_modules/mocha-phantomjs/bin/mocha-phantomjs test/index.html"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
@@ -20,7 +22,10 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
+    "chai": "^3.5.0",
     "http-server": "^0.10.0",
+    "mocha": "^3.4.1",
+    "mocha-phantomjs": "^4.1.0",
     "webpack": "^2.2.1"
   },
   "dependencies": {
