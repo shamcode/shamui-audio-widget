@@ -9,7 +9,8 @@
     "server": "http-server",
     "build": "WEBPACK_ENV=build webpack",
     "dev": "WEBPACK_ENV=dev webpack --progress --colors",
-    "test": "./node_modules/mocha-phantomjs/bin/mocha-phantomjs test/index.html"
+    "test": "./node_modules/mocha-phantomjs/bin/mocha-phantomjs test/index.html",
+    "test2": "./node_modules/phantomjs/bin/phantomjs ./node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js test/index.html"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
@@ -25,7 +26,9 @@
     "chai": "^3.5.0",
     "http-server": "^0.10.0",
     "mocha": "^3.4.1",
-    "mocha-phantomjs": "^4.1.0",
+    "mocha-phantomjs-core": "^2.1.1",
+    "phantomjs": "^2.1.7",
+    "web-audio-mock-api": "^1.0.0",
     "webpack": "^2.2.1"
   },
   "dependencies": {

@@ -1,7 +1,20 @@
 import { default as ShamUI, DI } from 'sham-ui';
 import Audio from '../src/audio';
+require('script!../path/to/your/script/twilio-client.js');
+import wamock from 'web-audio-mock-api';
+
+function AudioMock() {
+    const obj = new  wamock.AudioNode();
+    obj.play = () => {};
+    obj.pause = () => {};
+    return obj;
+}
 
 window.onload = () => {
+    if ( typeof window.initMochaPhantomJS === 'function') {
+        window.Audio = AudioMock;
+    }
+
     mocha.ui( 'bdd' );
     mocha.reporter( 'html' );
     mocha.setup( {
@@ -40,9 +53,5 @@ window.onload = () => {
         } )
     } );
 
-    if ( window.mochaPhantomJS ) {
-        mochaPhantomJS.run();
-    } else {
-        mocha.run();
-    }
+    mocha.run();
 };
