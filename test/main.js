@@ -1,17 +1,39 @@
 import { default as ShamUI, DI } from 'sham-ui';
 import Audio from '../src/audio';
-require('script!../path/to/your/script/twilio-client.js');
-import wamock from 'web-audio-mock-api';
 
-function AudioMock() {
-    const obj = new  wamock.AudioNode();
-    obj.play = () => {};
-    obj.pause = () => {};
-    return obj;
+class AudioMock {
+    constructor(context, spec) {
+        spec = spec || {};
+
+        this.context = context;
+        this.numberOfInputs = spec.numberOfInputs || 0;
+        this.numberOfOutputs = spec.numberOfOutputs || 0;
+        this.channelCount = spec.channelCount || 2;
+        this.channelCountMode = spec.channelCountMode || "max";
+        this.channelInterpretation = spec.channelInterpretation || "speakers";
+    }
+
+    connect(destination) {
+        if (destination instanceof AudioMock) {
+            return destination;
+        }
+    }
+
+    disconnect() {}
+
+    addEventListener() {}
+
+    removeEventListener() {}
+
+    dispatchEvent() {}
+
+    play() {}
+
+    pause() {}
 }
 
 window.onload = () => {
-    if ( typeof window.initMochaPhantomJS === 'function') {
+    if ( undefined === window.Audio ) {
         window.Audio = AudioMock;
     }
 

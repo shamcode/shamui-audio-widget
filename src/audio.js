@@ -1,4 +1,4 @@
-import { Widget, options } from 'sham-ui';
+import { Widget, options, handler } from 'sham-ui';
 import Template from './template';
 import Player from 'audio-player-es6';
 
@@ -48,6 +48,9 @@ export default class Audio extends Widget {
     static actionSequence = [ 'render', 'bindEvents' ];
 
     @options
+    static bindOnce = false;
+
+    @options
     onPlay() {}
 
     @options
@@ -90,6 +93,7 @@ export default class Audio extends Widget {
     // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     // Handlers
     // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    @handler( 'click', '.play-pause' )
     playPauseHandler() {
         const buttonClassList = this.playPauseButton.classList;
         const iconClassList = this.playPauseButton.querySelector( '.fa' ).classList;
@@ -111,6 +115,7 @@ export default class Audio extends Widget {
         this.isPlaying = !this.isPlaying;
     }
 
+    @handler( 'input', '.volume' )
     volumeHandler() {
         this.audio.setVolume( parseFloat( this.volumeSlider.value ) );
     }
@@ -122,15 +127,18 @@ export default class Audio extends Widget {
         slider.value = context.currentTime;
     }
 
+    @handler( 'input', '.timing' )
     timingHandler() {
         this.audio.audioCurrent.currentTime = this.timingSlider.value;
         this.options.onTimingUpdate( this.audio.audioCurrent.currentTime, this.audio );
     }
 
+    @handler( 'click', '.pre' )
     preButtonHandler() {
         this.audio.pre();
     }
 
+    @handler( 'click', '.next' )
     nextButtonHandler() {
         this.audio.next();
     }
@@ -148,31 +156,14 @@ export default class Audio extends Widget {
             } )
         ;
 
-        this.bindedPlayPauserHandler = this.playPauseHandler.bind( this );
-        this.playPauseButton.addEventListener( 'click', this.bindedPlayPauserHandler );
-        this.bindedVolumeHandler = this.volumeHandler.bind( this );
-        this.volumeSlider.addEventListener( 'input', this.bindedVolumeHandler );
         this.bindedTimingUpdate = this.timingUpdate.bind( this );
         this.audio.audioCurrent.addEventListener( 'timeupdate', this.bindedTimingUpdate );
-        this.bindedTimingHandler = this.timingHandler.bind( this );
-        this.timingSlider.addEventListener( 'input', this.bindedTimingHandler );
-        this.bindedPreHandler = this.preButtonHandler.bind( this );
-        this.preButton.addEventListener( 'click', this.bindedPreHandler );
-        this.bindedNextHandler = this.nextButtonHandler.bind( this );
-        this.nextButton.addEventListener( 'click', this.bindedNextHandler );
     }
 
-    html() {
-        return Template;
-    }
+    html = Template;
 
     destroy() {
         super.destroy( ...arguments );
-        this.playPauseButton.removeEventListener( 'click', this.bindedPlayPauserHandler );
-        this.volumeSlider.removeEventListener( 'input', this.bindedVolumeHandler );
         this.audio.audioCurrent.removeEventListener( 'timeupdate', this.bindedTimingUpdate );
-        this.timingSlider.removeEventListener( 'input', this.bindedTimingHandler );
-        this.preButton.removeEventListener( 'click', this.bindedPreHandler );
-        this.nextButton.removeEventListener( 'click', this.bindedNextHandler );
     }
 }
