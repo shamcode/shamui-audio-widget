@@ -45,12 +45,6 @@ export default class Audio extends Widget {
     static NEXT_BUTTON_SELECTOR = '.next';
 
     @options
-    static actionSequence = [ 'render', 'bindEvents' ];
-
-    @options
-    static bindOnce = false;
-
-    @options
     onPlay() {}
 
     @options
@@ -160,7 +154,7 @@ export default class Audio extends Widget {
         this.audio.audioCurrent.addEventListener( 'timeupdate', this.bindedTimingUpdate );
     }
 
-    html = Template;
+    html() { return Template };
 
     destroy() {
         super.destroy( ...arguments );

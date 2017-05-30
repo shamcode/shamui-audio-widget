@@ -1,6 +1,6 @@
 {
   "name": "sham-ui-audio-widget",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "lib/sham-ui-audio-widget.js",
   "browser": "lib/sham-ui-audio-widget.js",
   "repository": "https://github.com/shamcode/shamui-audio-widget",
@@ -32,6 +32,6 @@
   "dependencies": {
     "audio-player-es6": "^1.0.8",
     "babel-runtime": "^6.18.0",
-    "sham-ui": "^1.1.0"
+    "sham-ui": "^1.2.2"
   }
 }
